@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d %p [%c] - &lt;%m&gt;%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <!-- Information about DataBase -->
+    <logger name="org.hibernate.engine.jdbc.env.internal" level="OFF"/>
+
+    <logger name="projectkan.services" level="DEBUG"/>
+
+    <!--org.springframework.test.context.transaction-->
+
+    <!--<logger name="org.hibernate.internal.util" level="DEBUG"/>-->
+
+    <!--<logger name="org.springframework.orm.jpa" level="DEBUG"/>-->
+
+    <!--<logger name="org.hibernate.SQL" level="DEBUG"/>-->
+    <!--<logger name="org.hibernate.type" level="TRACE"/>-->
+
+    <root level="OFF">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
