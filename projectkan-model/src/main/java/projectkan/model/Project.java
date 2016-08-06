@@ -22,8 +22,8 @@ public class Project {
     @Column(name = Constants.Database.PROJECT_ID_PROJECT, nullable = false)
     private Long idProject;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = Constants.Database.PROJECT_ID_PROJECT_PARENT, nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = Constants.Database.PROJECT_ID_PROJECT_PARENT)
     private Project idProjectParent;
 
     @Column(name = Constants.Database.PROJECT_CODE)
@@ -34,7 +34,6 @@ public class Project {
     private String name;
 
     @Column(name = Constants.Database.PROJECT_DESCRIPTION)
-    @NotNull
     private String description;
 
     @Column(name = Constants.Database.PROJECT_INITIAL_DATE)

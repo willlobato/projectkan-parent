@@ -19,7 +19,7 @@ import java.util.Arrays;
  * Created by willlobato on 30/07/16.
  */
 @SpringBootApplication
-@ImportResource("classpath:application-context-projectkan-services.xml")
+@ImportResource("classpath:application-context-projectkan-war.xml")
 public class Application {
 
     public static void main(String[] args) {

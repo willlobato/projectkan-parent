@@ -34,7 +34,7 @@ public class UserServicesTest {
     private User user;
 
     @Inject
-    private UserServices userServices;
+    private UserService userService;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -47,7 +47,7 @@ public class UserServicesTest {
         this.user.setPassword(PASSWORD);
         this.user.setEmail(EMAIL);
 
-        userServices.create(user);
+        userService.create(user);
 
         assertThat(user.getIdUser(), notNullValue());
     }
@@ -63,7 +63,7 @@ public class UserServicesTest {
         this.user.setPassword(PASSWORD);
         this.user.setEmail(EMAIL_INVALID);
 
-        userServices.create(user);
+        userService.create(user);
 
     }
 
@@ -78,7 +78,7 @@ public class UserServicesTest {
         this.user.setPassword(null);
         this.user.setEmail(EMAIL);
 
-        userServices.create(user);
+        userService.create(user);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class UserServicesTest {
         this.user.setPassword(PASSWORD);
         this.user.setEmail(EMAIL);
 
-        userServices.create(user);
+        userService.create(user);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class UserServicesTest {
     public void shouldLogin() throws Exception {
 
         shouldCreateNewUser();
-        boolean logged = userServices.login(USERNAME, PASSWORD);
+        boolean logged = userService.login(USERNAME, PASSWORD);
 
         assertThat(logged, equalTo(Boolean.TRUE));
     }

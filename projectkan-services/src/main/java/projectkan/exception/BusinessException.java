@@ -2,10 +2,12 @@ package projectkan.exception;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by willlobato on 28/07/16.
  */
+@Slf4j
 public abstract class BusinessException extends Exception {
 
     @Getter

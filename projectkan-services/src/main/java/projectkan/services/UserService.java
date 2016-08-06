@@ -21,7 +21,7 @@ import java.util.Set;
 @Slf4j
 @Service
 @Transactional
-public class UserServices {
+public class UserService {
 
     @Inject
     private UserRepository userRepository;
