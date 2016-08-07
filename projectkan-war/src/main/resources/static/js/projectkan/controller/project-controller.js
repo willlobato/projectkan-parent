@@ -2,7 +2,6 @@
  * Created by willlobato on 03/08/16.
  */
 'use strict';
-
 angular.module('mainApp').controller('ProjectController', ['$scope', 'ProjectService', function($scope, ProjectService) {
     var self = this;
     self.user={id:null,username:'',address:'',email:''};
