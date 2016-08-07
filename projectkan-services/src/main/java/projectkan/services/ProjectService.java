@@ -2,12 +2,13 @@ package projectkan.services;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projectkan.exception.BusinessException;
 import projectkan.exception.ObjectNotFoundException;
 import projectkan.model.Project;
-import projectkan.model.User;
 import projectkan.repository.ProjectRepository;
 import projectkan.util.ValidationUtil;
 
@@ -37,6 +38,10 @@ public class ProjectService {
         return projects;
     }
 
+    public Page<Project> findAll(Pageable pageable) throws BusinessException {
+        Page<Project> projects = repository.findAll(pageable);
+        return projects;
+    }
 
     public Project get(Long id) throws BusinessException {
         Project project = repository.findOne(id);

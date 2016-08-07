@@ -3,33 +3,25 @@ package projectkan.services;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import projectkan.model.User;
 
 import javax.inject.Inject;
 
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
 /**
  * Created by willlobato on 28/07/16.
  */
-@RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:application-context-projectkan-services.xml")
-public class UserServicesTest {
+public class UserServiceTest extends AbstractServiceTest {
 
     public static final String USERNAME = "willlobato";
     public static final String PASSWORD = "123456";
     public static final String EMAIL = "will.lobato@gmail.com";
 
     public static final String EMAIL_INVALID = "willXlobatoXgmailXcom";
-
-    public static final String ATTRIBUTE_FIELD = "field";
-    public static final String ATTRIBUTE_CONSTRAINTS = "constraints";
 
     private User user;
 

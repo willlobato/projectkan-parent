@@ -1,14 +1,11 @@
 package projectkan.util;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import projectkan.model.Project;
 import projectkan.model.ProjectDTO;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by willlobato on 06/08/16.
@@ -20,13 +17,13 @@ public class MapperUtil {
     private ModelMapper modelMapper;
 
     public final ProjectDTO convertToDto(Project project) {
-        ProjectDTO postDto = modelMapper.map(project, ProjectDTO.class);
-        return postDto;
+        ProjectDTO dto = modelMapper.map(project, ProjectDTO.class);
+        return dto;
     }
 
     public Project convertToEntity(ProjectDTO projectDTO) {
-        Project post = modelMapper.map(projectDTO, Project.class);
-        return post;
+        Project project = modelMapper.map(projectDTO, Project.class);
+        return project;
     }
 
 }

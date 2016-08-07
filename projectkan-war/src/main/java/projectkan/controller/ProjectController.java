@@ -1,7 +1,11 @@
 package projectkan.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projectkan.exception.BusinessException;
@@ -11,8 +15,6 @@ import projectkan.services.ProjectService;
 import projectkan.util.MapperUtil;
 
 import javax.inject.Inject;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by willlobato on 03/08/16.
@@ -30,16 +32,17 @@ public class ProjectController {
 
     /**
      * List all projects
+     * @param pageable
+     * @param assembler
      * @return
+     * @throws BusinessException
      */
-    @GetMapping
-    public ResponseEntity<List<ProjectDTO>> list() throws BusinessException {
-        List<Project> listAll = service.listAll();
-
-        List<ProjectDTO> projectDTOs = listAll.stream().map(
-                project -> mapperUtil.convertToDto(project)).collect(Collectors.toList());
-
-        return new ResponseEntity<>(projectDTOs, HttpStatus.OK);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findAll(Pageable pageable,
+                                     PagedResourcesAssembler<ProjectDTO> assembler) throws BusinessException {
+        Page<Project> projectPage = service.findAll(pageable);
+        Page<ProjectDTO> projects = projectPage.map(mapperUtil::convertToDto);
+        return new ResponseEntity<>(assembler.toResource(projects), HttpStatus.OK);
     }
 
     /**
@@ -90,7 +93,7 @@ public class ProjectController {
         Project project = mapperUtil.convertToEntity(projectDTO);
         service.update(project);
         projectDTO = mapperUtil.convertToDto(project);
-        return new ResponseEntity<>(projectDTO, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(projectDTO, HttpStatus.OK);
     }
 
 }
