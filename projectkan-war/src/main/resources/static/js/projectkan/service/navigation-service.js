@@ -2,20 +2,22 @@
  * Created by willlobato on 07/08/16.
  */
 'use strict';
-angular.module('mainApp', []).service('NavigationService', ['$http', function ($http) {
+var navigationService = angular.module('NavigationService', []);
+navigationService.service('NavigationService', ['$http', '$q', function ($http, $q) {
 
     return {
         buildNavigationBar: function () {
-            return $http.get('navigation').then(
-
+            var deferred = $q.defer();
+            $http.get('navigation').then(
                 function (response) {
-                    console.log(response.data);
+                    deferred.resolve(response.data);
                 },
                 function (errResponse) {
-
+                    console.error('Error!');
+                    deferred.reject(errResponse);
                 }
-
-            )
+            );
+            return deferred.promise;
         }
     }
 

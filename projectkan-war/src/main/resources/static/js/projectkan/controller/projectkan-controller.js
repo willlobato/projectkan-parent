@@ -2,12 +2,19 @@
  * Created by willlobato on 07/08/16.
  */
 'use strict';
-angular.module('mainApp', []).controller('projectkanController', function ($scope, NavigationService) {
-   //$scope.firstName = 'WILL';
+var mainApp = angular.module('mainApp', ['NavigationService']);
+mainApp.controller('projectkanController', function ($scope, NavigationService) {
 
-   // $scope.navigationDTO = NavigationService.buildNavigationBar();
+    
 
-   // var data = NavigationService.buildNavigationBar();
-   // console.log(data);
+    NavigationService.buildNavigationBar().then(
+        function (data) {
+            $scope.navigation = data;
+            console.log(data);
+        },
+        function(errResponse) {
+            console.error('Error while fetching Users');
+        }
+    );
 
 });

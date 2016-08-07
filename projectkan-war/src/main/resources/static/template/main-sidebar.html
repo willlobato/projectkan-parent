@@ -23,20 +23,40 @@
         </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
+
+
+        <ul class="sidebar-menu">
+            <li class="header">{{navigation.name}}</li>
+            <li ng-attr-class="{{item.path == null ? 'treeview' : undefined}}" ng-repeat="item in navigation.items">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>{{item.name}}</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" ng-repeat="subitem in item.items">
+                    <li>
+                        <a href="{{subitem.path}}"><i class="fa fa-circle-o"></i>{{subitem.name}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                     <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -55,9 +75,9 @@
             <li>
                 <a href="pages/widgets.html">
                     <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">new</small>
+                     </span>
                 </a>
             </li>
             <li class="treeview">

@@ -2,6 +2,7 @@ package projectkan.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +15,16 @@ public class NavigationItemDTO {
 
     private String path;
 
-    private List<NavigationItemDTO> item;
+    private List<NavigationItemDTO> items;
 
-    public NavigationItemDTO(String name, List<NavigationItemDTO> item) {
+    public NavigationItemDTO(String name) {
         this.name = name;
-        this.item = item;
+        this.items = new ArrayList<>();
+    }
+
+    public NavigationItemDTO(String name, List<NavigationItemDTO> items) {
+        this.name = name;
+        this.items = items;
     }
 
     public NavigationItemDTO(String name, String path) {
@@ -26,9 +32,8 @@ public class NavigationItemDTO {
         this.path = path;
     }
 
-
-
-
-
+    public void addItem(NavigationItemDTO item) {
+        items.add(item);
+    }
 
 }
