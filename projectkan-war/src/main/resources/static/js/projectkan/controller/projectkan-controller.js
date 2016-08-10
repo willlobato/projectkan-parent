@@ -4,17 +4,25 @@
 'use strict';
 var mainApp = angular.module('mainApp', ['NavigationService']);
 mainApp.controller('projectkanController', function ($scope, NavigationService) {
+    var self = this;
 
-    
+    var navigationBar = {
 
-    NavigationService.buildNavigationBar().then(
-        function (data) {
-            $scope.navigation = data;
-            console.log(data);
+        build : function () {
+            NavigationService.buildNavigationBar().then(
+                function (data) {
+                    self.navigation = data;
+
+                    console.log(data);
+                },
+                function(errResponse) {
+                    console.error('Error while fetching Users');
+                }
+            );
         },
-        function(errResponse) {
-            console.error('Error while fetching Users');
-        }
-    );
+
+    }
+
+    navigationBar.build();
 
 });
